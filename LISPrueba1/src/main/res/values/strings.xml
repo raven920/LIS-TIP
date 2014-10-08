@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LISPrueba1</string>
+    <string name="config">Configuracion</string>
+    <string name="dialog_no_nfc">No se encontro soporte para NFC.
+        Necesitas NFC para usar esta aplicacion.</string>
+    <string name="dialog_no_nfc_title">NFC no soportado</string>
+    <string name="salir">Salir</string>
+    <string name="cedTV">Cedula: </string>
+    <string name="nomTV">Nombre: </string>
+    <string name="apeTV">Apellido: </string>
+    <string name="estadoTV">Estado</string>
+    <string name="aceptado">Aceptado</string>
+    <string name="sancionado">Sancionado</string>
+    <string name="rechazado">Rechazado</string>
+    <string name="desconectado">Desconectado</string>
+    <string name="no_hay_tarjeta">La tarjeta fue removida, intentelo nuevamente.</string>
+    <string name="tarjeta_invalida">La tarjeta no es una TIP valida.</string>
+    <string name="buscar">Buscar</string>
+    <string name="title_activity_configuracion">ConfiguracionActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="error_de_lectura">Error en la lectura, vuelva a intentarlo.</string>
+    <string name="error_conexion">Error: Falló la conexión al servidor.</string>
+    <string name="buscando">Buscando</string>
+
+</resources>
