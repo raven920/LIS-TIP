@@ -1,7 +1,11 @@
 package net.ideashock.lisprueba1.csv;
 
 /**
- * Created by raven on 18/04/15.
+ * Clase Usuario:
+ *
+ * Esta clase se encarga de almacenar en la RAM un usuario determinado.
+ *
+ * @author Christian Delany
  */
 public class Usuario {
     private String nombres;

@@ -1,8 +1,10 @@
 package net.ideashock.lisprueba1.Actividades;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -25,6 +27,7 @@ import net.ideashock.lisprueba1.Funciones;
 import net.ideashock.lisprueba1.JSONParser;
 import net.ideashock.lisprueba1.LectorMifareC;
 import net.ideashock.lisprueba1.R;
+import net.ideashock.lisprueba1.csv.Convertidor;
 import net.ideashock.lisprueba1.csv.ListaUsuario;
 import net.ideashock.lisprueba1.csv.Usuario;
 
@@ -89,8 +92,30 @@ public class ActividadPrincipal extends Activity {
             Intent intent = new Intent(this, ConfiguracionActivity.class);
             startActivity(intent);
             return true;
+        }else if(id == R.id.action_crearcsv){
+            final EditText input = new EditText(ActividadPrincipal.this);
+            new AlertDialog.Builder(ActividadPrincipal.this)
+                    .setTitle("Exportar a CSV")
+                    .setMessage("Esta funcionalidad le permite exportar los usuarios que han sido" +
+                            " verificados en esta sesión a un archivo CSV (Tabla). \n\nIngrese el " +
+                            "nombre del archivo que quiere crear:")
+                    .setView(input)
+                    .setPositiveButton("Crear", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            botonCrearCSV(input.getText().toString());
+                        }
+                    })
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // No hacer nada
+                        }
+                    }).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void botonCrearCSV(String archivo){
+        new Convertidor(usuarios.getLista(),archivo,this).crearCSV();
     }
 
     @Override

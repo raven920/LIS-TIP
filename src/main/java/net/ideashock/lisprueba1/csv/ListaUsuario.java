@@ -7,7 +7,12 @@ import java.util.LinkedList;
 import java.util.Locale;
 
 /**
- * Created by raven on 18/04/15.
+ * Clase ListaUsuario:
+ *
+ * Esta clase almacena los usuarios que han ingresado al LIS en un HashMap, el cual es entregado a
+ * las demas clases como una lista.
+ *
+ * @author Christian Delany
  */
 public class ListaUsuario {
     private HashMap<String,Usuario> usuarios;
@@ -17,12 +22,7 @@ public class ListaUsuario {
     }
 
     public void insertarUsuario(Usuario u){
-        if(!usuarios.containsKey(u.getCedula())){
-            usuarios.put(u.getCedula(),u);
-        }
-        for (Usuario i : usuarios.values()){
-            Log.d("listip","Cedula: "+i.getCedula()+" Nombres: "+i.getNombres()+i.getApellidos()+" Estado: "+i.getAceptado());
-        }
+        usuarios.put(u.getCedula(),u);
     }
 
     public LinkedList<Usuario> getLista(){

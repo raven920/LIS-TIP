@@ -24,5 +24,6 @@
     <string name="error_de_lectura">Error en la lectura, vuelva a intentarlo.</string>
     <string name="error_conexion">Error: Falló la conexión al servidor.</string>
     <string name="buscando">Buscando</string>
+    <string name="crearcsv">Exportar CSV</string>
 
 </resources>
