@@ -11,7 +11,6 @@ import android.nfc.TagLostException;
 import android.nfc.tech.MifareClassic;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +25,8 @@ import net.ideashock.lisprueba1.Funciones;
 import net.ideashock.lisprueba1.JSONParser;
 import net.ideashock.lisprueba1.LectorMifareC;
 import net.ideashock.lisprueba1.R;
+import net.ideashock.lisprueba1.csv.ListaUsuario;
+import net.ideashock.lisprueba1.csv.Usuario;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,6 +43,7 @@ public class ActividadPrincipal extends Activity {
     private TextView estado;
     private String url = "";
     private boolean sancion = true;
+    private ListaUsuario usuarios = new ListaUsuario();
     JSONParser jParser = new JSONParser();
 
     @Override
@@ -159,10 +161,10 @@ public class ActividadPrincipal extends Activity {
                 Toast.makeText(this,R.string.tarjeta_invalida,Toast.LENGTH_LONG).show();
                 return;
             }
+            buscaCedula(false); // Buscamos en la base de datos, asumimos que sacamos el usuario
             setCedula(cedulaLimpia);//Pone la cedula en el campo correspondiente
             setNombre(nombreLimpio);
             setApellido(apellidoLimpio);
-            buscaCedula(false); // Buscamos en la base de datos, asumimos que sacamos el usuario
         }catch (TagLostException exc){
         }
     }
@@ -178,8 +180,17 @@ public class ActividadPrincipal extends Activity {
     }
 
     public void setApellido(String apellido){
+
         nom = (EditText)findViewById(R.id.editText3);
         nom.setText(apellido); //Escribe la cedula.
+    }
+
+    public void agregarUsuario(){
+        String nombreUs = ((EditText)findViewById(R.id.editText)).getText().toString();
+        String apellidoUs=((EditText)findViewById(R.id.editText3)).getText().toString();
+        String estadoUs =((TextView)findViewById(R.id.textView4)).getText().toString();
+        usuarios.insertarUsuario(new Usuario(nombreUs,apellidoUs,getCedula(), estadoUs));
+
     }
 
     public void setEstado(int est){
@@ -205,6 +216,14 @@ public class ActividadPrincipal extends Activity {
             p = getResources().getString(R.string.desconectado);
         }
         estado.setText(p); //Escribe el estado;
+
+        //Agregamos a la lista de los usuarios
+        switch (est){
+            case -1:
+            case 0:
+            case 1:
+                agregarUsuario();
+        }
     }
 
     public String getCedula(){
@@ -290,18 +309,23 @@ public class ActividadPrincipal extends Activity {
                         return;
                     }
                     if(exito == 1){
+                        if(buscarNombre){ //sacamos el nombre de la BD
+                            setNombre(nom);
+                            setApellido(ap);
+                        }
                         if(sanc1 == 1){
                          setEstado(-1);
                         }else{
                             setEstado(1);
                         }
                     }else{
+                        if(buscarNombre){
+                            setNombre("");
+                            setApellido("");
+                        }
                         setEstado(0);
                     }
-                    if(buscarNombre){
-                        setNombre(nom);
-                        setApellido(ap);
-                    }
+
                 }
             });
 
