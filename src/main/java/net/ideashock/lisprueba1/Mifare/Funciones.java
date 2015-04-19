@@ -1,4 +1,4 @@
-package net.ideashock.lisprueba1;
+package net.ideashock.lisprueba1.Mifare;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -8,7 +8,6 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.MifareClassic;
 import android.nfc.tech.NfcA;
-import android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;

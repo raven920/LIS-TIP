@@ -1,11 +1,10 @@
-package net.ideashock.lisprueba1;
+package net.ideashock.lisprueba1.Mifare;
 
 import java.io.IOException;
 
 import android.nfc.Tag;
 import android.nfc.TagLostException;
 import android.nfc.tech.MifareClassic;
-import android.util.Log;
 
 /**
  * Esta clase contiene funciones de lectura de bloques para ser usadas con tags MIFARE.

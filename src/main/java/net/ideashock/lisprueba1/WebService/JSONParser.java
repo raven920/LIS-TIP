@@ -1,4 +1,4 @@
-package net.ideashock.lisprueba1;
+package net.ideashock.lisprueba1.WebService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
